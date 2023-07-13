@@ -54,20 +54,22 @@ while True:
     print()
     keywords = gpt.get_keywords(question)
 
-    print("Searching: " + ", ".join(keywords) + "\n")
+    print("Searching: " + ", ".join(keywords) + "")
 
     matches = lookup.find_matches(chunks, keywords)
 
     for i, chunk_id in enumerate(matches.keys()):
+        print(".", end="", flush=True)
+
         chunk = chunks[chunk_id]
         response = gpt.answer_question(chunk, question)
 
         if response.get("answer_found"):
-            print("GPT: " + str(response.get("response")) + "\n")
+            print("\n\nGPT: " + str(response.get("response")) + "\n")
             break
 
         if i > limit:
             break
 
     if not response.get("answer_found"):
-        print("GPT: I'm sorry, but I can't find that information\n")
+        print("\n\nGPT: I'm sorry, but I can't find that information\n")
