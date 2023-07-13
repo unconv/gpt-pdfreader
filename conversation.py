@@ -13,10 +13,10 @@ if not openai.api_key:
     openai.api_key = input("Please enter your OpenAI API key: ")
     print()
 
-program_name = sys.argv.pop()
+program_name = sys.argv.pop(0)
 
 if len(sys.argv):
-    pdf_file = sys.argv.pop()
+    pdf_file = sys.argv.pop(0)
 else:
     pdf_file = input("Please enter the PDF file you want to read: ")
     print()
@@ -27,22 +27,22 @@ else:
         print()
 
 if len(sys.argv):
-    chunk_size = sys.argv.pop()
+    chunk_size = int(sys.argv.pop(0))
 else:
     chunk_size = 4000
 
 if len(sys.argv):
-    overlap = sys.argv.pop()
+    overlap = int(sys.argv.pop(0))
 else:
     overlap = 1000
 
 if len(sys.argv):
-    limit = sys.argv.pop()
+    limit = int(sys.argv.pop(0))
 else:
     limit = 5
 
 if len(sys.argv):
-    gpt.model = sys.argv.pop()
+    gpt.model = sys.argv.pop(0)
 else:
     gpt.model = "gpt-3.5-turbo"
 
